@@ -12,51 +12,15 @@
 using namespace std;
 using namespace cv;
 
+LaneDetector::LaneDetector(){
+
+
+} // empty constructor
+
 LaneDetector::LaneDetector(Mat &Frame):originalFrame(Frame){
 // This will be the main function
-	cout<<"Lane Detector is created"<<endl;
-
-	// Step 1 - define ROI and warp Image
-	setPointsTest();
+	setPoints();
 	calculatePerspectiveMatrices();
-	GenerateWarpedImage();
-	// Step 2 - Process Warped image
-	cvtColor(BirdsEyeView,processedIPM, COLOR_BGR2GRAY);
-	// create mask for capturing white
-	// Parameter to tune - THreshold VALUES
-	inRange(processedIPM,Scalar(150,150,150), Scalar(255,255,255),
-							processedIPM);
-	// Apply Gaussian Blur
-	GaussianBlur(processedIPM,processedIPM,Size(9,9),0,0);
-	// We remove noise and close the structures by
-	// Morph open and close.
-	MorphologyKernel = Mat::ones(5,5, CV_8U);
-	morphologyEx(processedIPM, processedIPM, MORPH_OPEN, MorphologyKernel);
-  morphologyEx(processedIPM, processedIPM, MORPH_CLOSE, MorphologyKernel);
-	// convert to binary
-	threshold(processedIPM, processedIPM, 150, 255, THRESH_BINARY);
-
-	// now comes the sliding window search for left
-	vector<Point2f> LanePointsleft = slidingWindow(processedIPM,
-		Rect(20, 440, 60, 40));
-	//  RIght
-	vector<Point2f> LanePointsright = slidingWindow(processedIPM,
-		Rect(540, 440, 60, 40));
-
-	// Let us append both together
-	LanePoints = LanePointsleft;
-	LanePoints.insert(LanePoints.end(),LanePointsright.begin()
-						, LanePointsright.end());
-
-	// plotting
-	string name = "original";
-	show(originalFrame,name);
-
-	name = "warped";
-	show(BirdsEyeView,name);
-
-	name = "Processed";
-	show(processedIPM,name);
 
 }
 
@@ -166,15 +130,35 @@ vector<Point2f> LaneDetector::slidingWindow(Mat image, Rect window)
 
     return points;
 }
-/* Things to add:
 
-1. We need to get the Birds Eye View of a frame by using warpPerspective
-   command. - Done
+void LaneDetector::Detect(Mat &frame){
+	originalFrame = frame;
+	GenerateWarpedImage();
+	cvtColor(BirdsEyeView,processedIPM, COLOR_BGR2GRAY);
+	// create mask for capturing white
+	// Parameter to tune - THreshold VALUES
+	inRange(processedIPM,Scalar(150,150,150), Scalar(255,255,255),
+							processedIPM);
+	// Apply Gaussian Blur
+	GaussianBlur(processedIPM,processedIPM,Size(9,9),0,0);
+	// We remove noise and close the structures by
+	// Morph open and close.
+	MorphologyKernel = Mat::ones(5,5, CV_8U);
+	morphologyEx(processedIPM, processedIPM, MORPH_OPEN, MorphologyKernel);
+  morphologyEx(processedIPM, processedIPM, MORPH_CLOSE, MorphologyKernel);
+	// convert to binary
+	threshold(processedIPM, processedIPM, 150, 255, THRESH_BINARY);
 
-2. We need to threshold the image to get a binary image and apply gaussian blur - Done
+	// now comes the sliding window search for left
+	vector<Point2f> LanePointsleft = slidingWindow(processedIPM,
+		Rect(20, 440, 60, 40));
+	//  RIght
+	vector<Point2f> LanePointsright = slidingWindow(processedIPM,
+		Rect(540, 440, 60, 40));
 
-3. We need to get the set of points in the IPM using sliding window approach. - Done
+	// Let us append both together
+	LanePoints = LanePointsleft;
+	LanePoints.insert(LanePoints.end(),LanePointsright.begin()
+						, LanePointsright.end());
 
-4. We need to convert the Point2f into vector<coordinates> using Realsense library
-
-5. These vector of coordinates will be added as obstacles in the grid */
+}

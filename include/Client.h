@@ -4,7 +4,7 @@
 
 #include<iostream>
 #include<vector>
-#include<pair>
+#include<utility> // for std::pair
 #include<string>
 #include<algorithm>
 #include"depthCamera.h"
@@ -22,4 +22,4 @@ public:
 
   Client();
 
-}
+};

@@ -20,6 +20,15 @@ DepthCamera::DepthCamera():depthptr(NULL),videoptr(NULL){
     getrs2frame();
   }
 
+  getFrame();
+
+}
+
+void DepthCamera::getFrame(){
+  getrs2frame();
+  ColorFrame = Mat(Size(width, height), CV_8UC3,
+          (void*)videoptr->get_data(), Mat::AUTO_STEP);
+
 }
 
 // Method to fetch depth and color frame in rs2 format
@@ -41,7 +50,8 @@ void DepthCamera::convert2openCV(){
 
   namedWindow("Color Frame" , WINDOW_NORMAL);
   imshow("Color Frame", ColorFrame);
-  std::cout<<ColorFrame.at<double>(40,40)<<std::endl;
+
+  //std::cout<<ColorFrame.at<double>(40,40)<<std::endl;
 
 }
 

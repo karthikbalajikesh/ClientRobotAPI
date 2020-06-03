@@ -90,7 +90,9 @@ check_EXTERNAL_OBJECTS =
 
 ../bin/check: CMakeFiles/check.dir/test/check.cpp.o
 ../bin/check: CMakeFiles/check.dir/build.make
-../bin/check: ../lib/libtestlib.so
+../bin/check: ../lib/libClient.so
+../bin/check: ../lib/libLaneDetector.so
+../bin/check: ../lib/libhelper.so
 ../bin/check: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.0
 ../bin/check: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_stitching.so.4.3.0
 ../bin/check: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_gapi.so.4.3.0

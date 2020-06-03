@@ -38,6 +38,7 @@ public:
 
 	// member functions
 	DepthCamera();
+	void getFrame();
 	void getrs2frame();
 	void getRawFrame();
 	void getColorFrame();

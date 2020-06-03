@@ -35,7 +35,8 @@ public:
 	// This will have hard coded ROI(source,dest pts)
 	// will asssign the original frame, perspective matrix,
 	// IPM matrix, BirdsEyeview, processedIPM
-	LaneDetector(Mat &Frasme);
+	LaneDetector();
+	LaneDetector(Mat &Frame);
 
 	// 2. Function to set source and destination Vertices.
 	void setPoints();
@@ -48,6 +49,8 @@ public:
 
   // 5. Warp Image
 	void GenerateWarpedImage();
+
+	void Detect(Mat &frame);
 
 	// 6. Sliding Window Search
 	vector<Point2f> slidingWindow(Mat Image, Rect Window);
