@@ -27,11 +27,11 @@
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="check">
-         <Option output="/home/karthik/dev/Client/bin/check" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="../bin" />
+      <Target title="LaneDetector">
+         <Option output="/home/karthik/dev/Client/lib/libLaneDetector.so" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/karthik/dev/Client/build" />
          <Option object_output="./" />
-         <Option type="1" />
+         <Option type="3" />
          <Option compiler="gcc" />
          <Compiler>
             <Add directory="/home/karthik/dev/Client/include" />
@@ -46,17 +46,17 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 check" />
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 LaneDetector" />
             <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="check/fast">
-         <Option output="/home/karthik/dev/Client/bin/check" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="../bin" />
+      <Target title="LaneDetector/fast">
+         <Option output="/home/karthik/dev/Client/lib/libLaneDetector.so" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/karthik/dev/Client/build" />
          <Option object_output="./" />
-         <Option type="1" />
+         <Option type="3" />
          <Option compiler="gcc" />
          <Compiler>
             <Add directory="/home/karthik/dev/Client/include" />
@@ -71,7 +71,17 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 check/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 LaneDetector/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/karthik/dev/Client/build" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
             <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
@@ -127,18 +137,8 @@
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="rebuild_cache">
-         <Option working_dir="/home/karthik/dev/Client/build" />
-         <Option type="4" />
-         <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
-         </MakeCommands>
-      </Target>
-      <Target title="LaneDetector">
-         <Option output="/home/karthik/dev/Client/lib/libLaneDetector.so" prefix_auto="0" extension_auto="0" />
+      <Target title="Client">
+         <Option output="/home/karthik/dev/Client/lib/libClient.so" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/karthik/dev/Client/build" />
          <Option object_output="./" />
          <Option type="3" />
@@ -156,14 +156,14 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 LaneDetector" />
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 Client" />
             <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="LaneDetector/fast">
-         <Option output="/home/karthik/dev/Client/lib/libLaneDetector.so" prefix_auto="0" extension_auto="0" />
+      <Target title="Client/fast">
+         <Option output="/home/karthik/dev/Client/lib/libClient.so" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/karthik/dev/Client/build" />
          <Option object_output="./" />
          <Option type="3" />
@@ -181,13 +181,66 @@
             <Add directory="/usr/local/include" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 LaneDetector/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 Client/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="check">
+         <Option output="/home/karthik/dev/Client/bin/check" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="../bin" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/karthik/dev/Client/include" />
+            <Add directory="/home/karthik/opencv4/installation/OpenCV-master/include/opencv4" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/7" />
+            <Add directory="/usr/include/c++/7/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/7" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 check" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="check/fast">
+         <Option output="/home/karthik/dev/Client/bin/check" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="../bin" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/karthik/dev/Client/include" />
+            <Add directory="/home/karthik/opencv4/installation/OpenCV-master/include/opencv4" />
+            <Add directory="/usr/include" />
+            <Add directory="/usr/include/c++/7" />
+            <Add directory="/usr/include/c++/7/backward" />
+            <Add directory="/usr/include/x86_64-linux-gnu" />
+            <Add directory="/usr/include/x86_64-linux-gnu/c++/7" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include" />
+            <Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed" />
+            <Add directory="/usr/local/include" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 check/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/karthik/dev/Client/build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       </Build>
+      <Unit filename="/home/karthik/dev/Client/src/Client/Client.cpp">
+         <Option target="Client"/>
+      </Unit>
       <Unit filename="/home/karthik/dev/Client/src/DepthCamera/depthCamera.cpp">
          <Option target="helper"/>
       </Unit>

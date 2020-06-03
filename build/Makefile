@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named check
+# Target rules for targets named LaneDetector
 
 # Build rule for target.
-check: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 check
-.PHONY : check
+LaneDetector: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 LaneDetector
+.PHONY : LaneDetector
 
 # fast build rule for target.
-check/fast:
-	$(MAKE) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/build
-.PHONY : check/fast
+LaneDetector/fast:
+	$(MAKE) -f CMakeFiles/LaneDetector.dir/build.make CMakeFiles/LaneDetector.dir/build
+.PHONY : LaneDetector/fast
 
 #=============================================================================
 # Target rules for targets named helper
@@ -137,17 +137,57 @@ helper/fast:
 .PHONY : helper/fast
 
 #=============================================================================
-# Target rules for targets named LaneDetector
+# Target rules for targets named Client
 
 # Build rule for target.
-LaneDetector: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 LaneDetector
-.PHONY : LaneDetector
+Client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Client
+.PHONY : Client
 
 # fast build rule for target.
-LaneDetector/fast:
-	$(MAKE) -f CMakeFiles/LaneDetector.dir/build.make CMakeFiles/LaneDetector.dir/build
-.PHONY : LaneDetector/fast
+Client/fast:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/build
+.PHONY : Client/fast
+
+#=============================================================================
+# Target rules for targets named check
+
+# Build rule for target.
+check: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 check
+.PHONY : check
+
+# fast build rule for target.
+check/fast:
+	$(MAKE) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/build
+.PHONY : check/fast
+
+src/Client/Client.o: src/Client/Client.cpp.o
+
+.PHONY : src/Client/Client.o
+
+# target to build an object file
+src/Client/Client.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/Client/Client.cpp.o
+.PHONY : src/Client/Client.cpp.o
+
+src/Client/Client.i: src/Client/Client.cpp.i
+
+.PHONY : src/Client/Client.i
+
+# target to preprocess a source file
+src/Client/Client.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/Client/Client.cpp.i
+.PHONY : src/Client/Client.cpp.i
+
+src/Client/Client.s: src/Client/Client.cpp.s
+
+.PHONY : src/Client/Client.s
+
+# target to generate assembly for a file
+src/Client/Client.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/Client/Client.cpp.s
+.PHONY : src/Client/Client.cpp.s
 
 src/DepthCamera/depthCamera.o: src/DepthCamera/depthCamera.cpp.o
 
@@ -237,10 +277,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... check"
-	@echo "... helper"
-	@echo "... rebuild_cache"
 	@echo "... LaneDetector"
+	@echo "... rebuild_cache"
+	@echo "... helper"
+	@echo "... Client"
+	@echo "... check"
+	@echo "... src/Client/Client.o"
+	@echo "... src/Client/Client.i"
+	@echo "... src/Client/Client.s"
 	@echo "... src/DepthCamera/depthCamera.o"
 	@echo "... src/DepthCamera/depthCamera.i"
 	@echo "... src/DepthCamera/depthCamera.s"

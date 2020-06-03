@@ -15,9 +15,9 @@ DepthCamera::DepthCamera():depthptr(NULL),videoptr(NULL){
 
   frames = rs2::frameset();
 
-  while(waitKey(1) < 0){
+  for(int i=0; i<10; i++){
+    // leave the first 10 frameset
     getrs2frame();
-    convert2openCV();
   }
 
 }

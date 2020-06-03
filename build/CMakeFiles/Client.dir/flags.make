@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -g -fPIC   -std=gnu++14
 
-CXX_DEFINES = -Dtestlib_EXPORTS
+CXX_DEFINES = -DClient_EXPORTS
 
 CXX_INCLUDES = -I/home/karthik/dev/Client/include -isystem /home/karthik/opencv4/installation/OpenCV-master/include/opencv4 
 

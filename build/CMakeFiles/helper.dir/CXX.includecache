@@ -24,19 +24,9 @@ opencv2/highgui/highgui.hpp
 thread
 -
 
-../include/intrinsic.h
-librealsense2/rs.hpp
--
-
-/home/karthik/dev/Client/src/client.cpp
-
-/home/karthik/dev/Client/src/depthCamera.cpp
+/home/karthik/dev/Client/src/DepthCamera/depthCamera.cpp
 depthCamera.h
-/home/karthik/dev/Client/src/depthCamera.h
-
-/home/karthik/dev/Client/src/intrinsic.cpp
-intrinsic.h
-/home/karthik/dev/Client/src/intrinsic.h
+/home/karthik/dev/Client/src/DepthCamera/depthCamera.h
 
 /home/karthik/opencv4/installation/OpenCV-master/include/opencv4/opencv2/core.hpp
 opencv2/core/cvdef.h
