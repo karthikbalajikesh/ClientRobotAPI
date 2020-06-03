@@ -33,6 +33,7 @@ find_package(Threads REQUIRED)
 ############### Adding Source Files ####################
 file(GLOB HELPERSOURCES "src/DepthCamera/*.cpp")
 file(GLOB LANESOURCES "src/LaneDetector/*.cpp")
+file(GLOB CLIENTSOURCES "src/Client/*.cpp")
 include_directories(include)
 
 # Appending all dependency libraries
@@ -47,6 +48,10 @@ target_link_libraries(helper ${LIBS})
 #2. Lane Detector
 add_library(LaneDetector SHARED ${LANESOURCES})
 target_link_libraries(LaneDetector ${LIBS})
+
+#3. Client
+add_library(Client SHARED ${CLIENTSOURCES})
+target_link_libraries(Client ${LIBS})
 
 ############## Appending custom libs to libs #########
 FILE(GLOB CUSTOMLIBS "lib/*")
