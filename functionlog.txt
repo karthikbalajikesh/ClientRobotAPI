@@ -1,0 +1,16 @@
+
+This project containst the client side executions of the Self Driving car Project.
+
+The Client is the Jetson Nano platform and the server is the Ubuntu Laptop.
+
+The individual functions of the Client include:
+1. Serial Connection with Arduino and sending control inputs.(background process)
+	- will maybe use ROS2 for this.
+
+2. Receiving Realsense data and converting to opencv format. - Done
+
+3. Receiving Depth Data as well, including intrinsics.
+
+4. Creating a custom Data Class and making the serialization and deserialization protocols.
+
+5. Sending it into socket.
