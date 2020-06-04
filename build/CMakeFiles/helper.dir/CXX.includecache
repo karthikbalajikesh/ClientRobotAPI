@@ -19,6 +19,8 @@ algorithm
 -
 librealsense2/rs.hpp
 -
+librealsense2/rsutil.h
+-
 opencv2/imgproc/imgproc.hpp
 -
 opencv2/highgui/highgui.hpp

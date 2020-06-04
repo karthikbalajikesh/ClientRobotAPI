@@ -8,6 +8,7 @@
 #include<utility>
 #include<algorithm>
 #include<librealsense2/rs.hpp>
+#include<librealsense2/rsutil.h>
 #include<opencv2/imgproc/imgproc.hpp>
 #include<opencv2/highgui/highgui.hpp>
 #include<thread>
@@ -31,6 +32,7 @@ public:
 	int width,height; // dimensions of image
 	Mat ColorFrame;
 	Mat DepthFrame;
+	rs2::pipeline_profile profile;
 	rs2::pipeline pipe;
 	rs2::frameset frames;
 

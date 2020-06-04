@@ -11,8 +11,7 @@ DepthCamera::DepthCamera():depthptr(NULL),videoptr(NULL){
   cfg.enable_stream(RS2_STREAM_COLOR, width,height, RS2_FORMAT_BGR8, 60);
 
     //Instruct pipeline to start streaming with the requested configuration
-  pipe.start(cfg);
-
+  profile = pipe.start(cfg);
   frames = rs2::frameset();
 
   // get first frame - Done for the purpose of declaring

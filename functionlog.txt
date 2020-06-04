@@ -9,8 +9,13 @@ The individual functions of the Client include:
 
 2. Receiving Realsense data and converting to opencv format. - Done
 
-3. Receiving Depth Data as well, including intrinsics.
+3. Receiving Depth Data as well, including intrinsics. -Done
 
 4. Creating a custom Data Class and making the serialization and deserialization protocols.
 
 5. Sending it into socket.
+
+
+Additional Notes: Right now, no filter has been applied to the data. We move every 10 pixels to discretize the obstacles. Reason for this is that we have too many obstacle points close to each other which do not need to be considered because we have inflation of obstacles to account for this in the server program. 
+
+However, spatial filter in the Realsense Camera library could be added and should be documented in the thesis with the reference paper. 
