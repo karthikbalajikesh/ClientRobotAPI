@@ -4,30 +4,37 @@
 
 Client::Client():DepthCamera(){
     detector = LaneDetector(this->ColorFrame);
-    //extractIntrinsics();
+    extractIntrinsics();
+
 
 }
 
 void Client::detect(){
-  
+  getFrame();
+  depth_frame temp = frames.get_depth_frame();
+  depthptr = &temp;
+  updateObstacles(depthptr);
 }
 
 void Client::extractIntrinsics(){
-    rs2::stream_profile profile = videoptr->get_profile();
+    video_frame video = frames.get_depth_frame();
+
+    rs2::stream_profile profile = video.get_profile();
     rs2::video_stream_profile video_profile = profile.as<rs2::video_stream_profile>();
-    //rs2_intrinsics temp = video_profile.get_intrinsics();
-    //Intrinsics = &temp;
+    rs2_intrinsics temp = video_profile.get_intrinsics();
+    Intrinsics = &temp;
 }
 // Check for the max and min depth to include in the obstacle list
-void Client::updateObstacles(){
+void Client::updateObstacles(depth_frame* depthpointer){
   // we will need to get the coordinates of the obstacles and append to the
   // vector of coordinates.
+  Obstacles.clear();
   pair<float,float> coordinate;
   float xcood = 0, zcood = 0;  // To hold the coordinate values
   int v = height/2; // pixel coordinates
   for(int u=0; u<width ; u++){
     // we need to get the depth at that point and then find the x and z coordinates
-    zcood = depthptr->get_distance(u,v);
+    zcood = depthpointer->get_distance(u,v);
     if (zcood>0.48 && zcood<=3){
         // get the x coordinate and add to vector of obstacles.
         coordinate = getCoordinates(Intrinsics,u,v,zcood);

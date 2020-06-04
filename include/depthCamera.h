@@ -33,6 +33,7 @@ public:
 	Mat DepthFrame;
 	rs2::pipeline pipe;
 	rs2::frameset frames;
+
 	rs2::depth_frame* depthptr;
 	rs2::video_frame* videoptr;
 

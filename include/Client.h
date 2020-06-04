@@ -27,7 +27,7 @@ public:
   void extractIntrinsics();
   pair<float,float> getCoordinates(rs2_intrinsics * intrin,
      int u,int v, float depth);
-  void updateObstacles();
+  void updateObstacles(depth_frame* depthpointer);
   void updateLane();
   void detect();
 };

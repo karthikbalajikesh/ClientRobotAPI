@@ -26,7 +26,6 @@ DepthCamera::DepthCamera():depthptr(NULL),videoptr(NULL){
 
   getFrame();
 
-
 }
 
 void DepthCamera::getFrame(){
@@ -42,9 +41,7 @@ void DepthCamera::getrs2frame(){
   // Might have parallel functions for converting to cv::Mat for
   // individual frames for the purpose of running as threads.
   frames = pipe.wait_for_frames();
-  depth_frame depth = frames.get_depth_frame();
   video_frame video = frames.get_color_frame();
-  depthptr = &depth;
   videoptr = &video;
 
 }
