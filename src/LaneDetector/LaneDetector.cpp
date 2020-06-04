@@ -13,8 +13,7 @@ using namespace std;
 using namespace cv;
 
 LaneDetector::LaneDetector(){
-
-
+	
 } // empty constructor
 
 LaneDetector::LaneDetector(Mat &Frame):originalFrame(Frame){

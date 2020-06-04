@@ -5,6 +5,7 @@
 #include<iostream>
 #include<chrono>
 #include<vector>
+#include<utility>
 #include<algorithm>
 #include<librealsense2/rs.hpp>
 #include<opencv2/imgproc/imgproc.hpp>
@@ -14,6 +15,7 @@
 using namespace std::chrono;
 using namespace rs2;
 using namespace cv;
+using std::pair;
 
 // we will create the Depth Camera Object. This should contain all the functions that we will perform on the depth camera.
 
@@ -40,6 +42,8 @@ public:
 	DepthCamera();
 	void getFrame();
 	void getrs2frame();
+	pair<depth_frame,video_frame> getFramereturn();
+	pair<depth_frame,video_frame> getrs2framereturn();
 	void getRawFrame();
 	void getColorFrame();
 	void getDepthFrame();

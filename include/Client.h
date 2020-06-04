@@ -10,6 +10,8 @@
 #include"depthCamera.h"
 #include"LaneDetector.h"
 
+
+
 using std::vector;
 using std::pair;
 
@@ -18,8 +20,14 @@ class Client: public DepthCamera {
 public:
   // This will contain one instance of Lane LaneDetector
   LaneDetector detector;
+  rs2_intrinsics* Intrinsics;
   vector<pair<float,float>> Obstacles;
 
   Client();
-
+  void extractIntrinsics();
+  pair<float,float> getCoordinates(rs2_intrinsics * intrin,
+     int u,int v, float depth);
+  void updateObstacles();
+  void updateLane();
+  void detect();
 };

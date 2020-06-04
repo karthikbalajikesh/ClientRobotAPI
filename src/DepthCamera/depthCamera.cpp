@@ -15,12 +15,17 @@ DepthCamera::DepthCamera():depthptr(NULL),videoptr(NULL){
 
   frames = rs2::frameset();
 
+  // get first frame - Done for the purpose of declaring
+  // depth frame and video frame due to segmentation error.
+
+
   for(int i=0; i<10; i++){
     // leave the first 10 frameset
     getrs2frame();
   }
 
   getFrame();
+
 
 }
 
@@ -41,6 +46,7 @@ void DepthCamera::getrs2frame(){
   video_frame video = frames.get_color_frame();
   depthptr = &depth;
   videoptr = &video;
+
 }
 
 // function to create CV::Mat file for color frames
