@@ -13,12 +13,12 @@ using namespace std;
 using namespace cv;
 
 LaneDetector::LaneDetector(){
-	
+
 } // empty constructor
 
 LaneDetector::LaneDetector(Mat &Frame):originalFrame(Frame){
 // This will be the main function
-	setPoints();
+	setPointsTest();
 	calculatePerspectiveMatrices();
 
 }
@@ -159,5 +159,10 @@ void LaneDetector::Detect(Mat &frame){
 	LanePoints = LanePointsleft;
 	LanePoints.insert(LanePoints.end(),LanePointsright.begin()
 						, LanePointsright.end());
+	cv::perspectiveTransform(LanePoints,LanePointsFrame,
+		InversePerspectiveMatrix);
+
+
+
 
 }

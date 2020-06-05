@@ -14,22 +14,39 @@ void printvector(std::vector<float> &data){
   }
 }
 
+void testThreadPerformance(Client& A){
+  auto start = high_resolution_clock::now();
+  A.DetectnoThread();
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<milliseconds>(stop - start);
+  cout << "\n Duraion without thread is "<<
+                duration.count()<<std::endl;
+
+  start = high_resolution_clock::now();
+  A.Detect();
+  stop = high_resolution_clock::now();
+  duration = duration_cast<milliseconds>(stop - start);
+  cout << "\n Duraion with thread is "<<
+                duration.count()<<std::endl;
+
+}
+
 
 int main(){
 
   Client A;
-auto start = high_resolution_clock::now();
-  A.detect();
-  A.getPointCoordinates();
-auto stop = high_resolution_clock::now();
-auto duration = duration_cast<milliseconds>(stop - start);
-cout << "\n"<<duration.count()<<std::endl;
-  A.getPointCoordinates();
-  cout<<"\n\n The Size of obstacles are    "<<A.Obstacles.size()<<endl;
-  printvector(A.Obstacles);
-  A.getPointCoordinates();
+  testThreadPerformance(A);
+  /*
+  auto start = high_resolution_clock::now();
+  A.DetectnoThread();
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<milliseconds>(stop - start);
+  cout << "\n"<<duration.count()<<std::endl;
+  cout<<"\n\n The Size of obstacles are    "<<A.Lanes.size()<<endl;
+  printvector(A.Lanes);
+
   //cout<<"\n\n The Size of obstacles are    "<<A.depths.size()<<endl;
-  //printvector(A.depths);
+  //printvector(A.depths);*/
 
   return 0;
 }

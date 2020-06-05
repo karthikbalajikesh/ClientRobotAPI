@@ -28,6 +28,7 @@ public:
 	Mat MorphologyKernel;
 	Point2f sourceVertices[4];
 	Point2f destinationVertices[4];
+	vector<Point2f> LanePointsFrame;
 	vector<Point2f> LanePoints;
 
 	// Methods
@@ -51,7 +52,7 @@ public:
 	void GenerateWarpedImage();
 
 	void Detect(Mat &frame);
-
+	
 	// 6. Sliding Window Search
 	vector<Point2f> slidingWindow(Mat Image, Rect Window);
 };
