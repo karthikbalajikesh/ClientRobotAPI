@@ -90,7 +90,8 @@ LaneDetector_EXTERNAL_OBJECTS =
 
 ../lib/libLaneDetector.so: CMakeFiles/LaneDetector.dir/src/LaneDetector/LaneDetector.cpp.o
 ../lib/libLaneDetector.so: CMakeFiles/LaneDetector.dir/build.make
-../lib/libLaneDetector.so: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.0
+../lib/libLaneDetector.so: /home/karthik/Downloads/boost_1_73_0/stage/lib/libboost_serialization.so
+../lib/libLaneDetector.so: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.2
 ../lib/libLaneDetector.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_stitching.so.4.3.0
 ../lib/libLaneDetector.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_gapi.so.4.3.0
 ../lib/libLaneDetector.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_line_descriptor.so.4.3.0

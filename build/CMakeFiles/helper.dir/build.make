@@ -90,7 +90,8 @@ helper_EXTERNAL_OBJECTS =
 
 ../lib/libhelper.so: CMakeFiles/helper.dir/src/DepthCamera/depthCamera.cpp.o
 ../lib/libhelper.so: CMakeFiles/helper.dir/build.make
-../lib/libhelper.so: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.0
+../lib/libhelper.so: /home/karthik/Downloads/boost_1_73_0/stage/lib/libboost_serialization.so
+../lib/libhelper.so: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.2
 ../lib/libhelper.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_stitching.so.4.3.0
 ../lib/libhelper.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_gapi.so.4.3.0
 ../lib/libhelper.so: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_line_descriptor.so.4.3.0

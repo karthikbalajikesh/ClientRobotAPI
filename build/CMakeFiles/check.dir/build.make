@@ -93,7 +93,8 @@ check_EXTERNAL_OBJECTS =
 ../bin/check: ../lib/libClient.so
 ../bin/check: ../lib/libLaneDetector.so
 ../bin/check: ../lib/libhelper.so
-../bin/check: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.0
+../bin/check: /home/karthik/Downloads/boost_1_73_0/stage/lib/libboost_serialization.so
+../bin/check: /usr/lib/x86_64-linux-gnu/librealsense2.so.2.35.2
 ../bin/check: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_stitching.so.4.3.0
 ../bin/check: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_gapi.so.4.3.0
 ../bin/check: /home/karthik/opencv4/installation/OpenCV-master/lib/libopencv_line_descriptor.so.4.3.0

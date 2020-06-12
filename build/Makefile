@@ -243,6 +243,33 @@ src/LaneDetector/LaneDetector.cpp.s:
 	$(MAKE) -f CMakeFiles/LaneDetector.dir/build.make CMakeFiles/LaneDetector.dir/src/LaneDetector/LaneDetector.cpp.s
 .PHONY : src/LaneDetector/LaneDetector.cpp.s
 
+src/tcp/tcp.o: src/tcp/tcp.cpp.o
+
+.PHONY : src/tcp/tcp.o
+
+# target to build an object file
+src/tcp/tcp.cpp.o:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/tcp/tcp.cpp.o
+.PHONY : src/tcp/tcp.cpp.o
+
+src/tcp/tcp.i: src/tcp/tcp.cpp.i
+
+.PHONY : src/tcp/tcp.i
+
+# target to preprocess a source file
+src/tcp/tcp.cpp.i:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/tcp/tcp.cpp.i
+.PHONY : src/tcp/tcp.cpp.i
+
+src/tcp/tcp.s: src/tcp/tcp.cpp.s
+
+.PHONY : src/tcp/tcp.s
+
+# target to generate assembly for a file
+src/tcp/tcp.cpp.s:
+	$(MAKE) -f CMakeFiles/Client.dir/build.make CMakeFiles/Client.dir/src/tcp/tcp.cpp.s
+.PHONY : src/tcp/tcp.cpp.s
+
 test/check.o: test/check.cpp.o
 
 .PHONY : test/check.o
@@ -291,6 +318,9 @@ help:
 	@echo "... src/LaneDetector/LaneDetector.o"
 	@echo "... src/LaneDetector/LaneDetector.i"
 	@echo "... src/LaneDetector/LaneDetector.s"
+	@echo "... src/tcp/tcp.o"
+	@echo "... src/tcp/tcp.i"
+	@echo "... src/tcp/tcp.s"
 	@echo "... test/check.o"
 	@echo "... test/check.i"
 	@echo "... test/check.s"
