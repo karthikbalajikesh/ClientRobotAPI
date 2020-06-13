@@ -30,6 +30,8 @@ public:
 	Point2f destinationVertices[4];
 	vector<Point2f> LanePointsFrame;
 	vector<Point2f> LanePoints;
+	vector<Point2f> LanePointsLeftFrame;
+	vector<Point2f> LanePointsRightFrame;
 
 	// Methods
 	// 1. Constructor with frame
@@ -48,11 +50,21 @@ public:
 	// 4. Function to get Perspective matrices
 	void calculatePerspectiveMatrices();
 
-  // 5. Warp Image
+    // 5. Warp Image
 	void GenerateWarpedImage();
 
-	void Detect(Mat &frame);
-	
-	// 6. Sliding Window Search
+	// 6. Function to process the image
+	void ProcessImage();
+
+	// 7. Sliding Window Search
 	vector<Point2f> slidingWindow(Mat Image, Rect Window);
+
+	// 8. Master Function for Detection of lanes
+	void Detect(Mat &frame);
+
+	// 9. Function to Detect left and right lanes seperately
+	void DetectLeftandRight();
+
+	// 10. Function to Detect an appended vector of lanes.
+	void DetectOverall();
 };

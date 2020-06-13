@@ -22,7 +22,9 @@ public:
   LaneDetector detector;
   rs2_intrinsics Intrinsics;
   vector<pair<float,float>> Obstacles;
-  vector<pair<float,float>> Lanes;
+  vector<pair<float,float>> Lanes; // not used
+  vector<pair<float,float>> LanesLeft;
+  vector<pair<float,float>> LanesRight;
   vector<float> depths;
 
   Client();
@@ -32,6 +34,8 @@ public:
      int u,int v, float depth);
   void updateObstacles();
   void updateLane();
+  void updateLaneLeft();
+  void updateLaneRight();
   void Detect();
   void DetectnoThread();
   void get3DCoordinates(pair<float,float>& cood,float pixel[2],float zcood);

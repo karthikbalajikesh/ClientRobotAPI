@@ -130,9 +130,15 @@ vector<Point2f> LaneDetector::slidingWindow(Mat image, Rect window)
     return points;
 }
 
-void LaneDetector::Detect(Mat &frame){
-	originalFrame = frame;
-	GenerateWarpedImage();
+// Function to process the image
+void LaneDetector::ProcessImage(){
+	/* This Function is to process the Image obtained 
+		after getting the Warped Image. 
+		The following is done. 
+		1. Convert to Grayscale. 
+		2. Extract White Color
+		3. Apply Guassian Blur to smoothen
+		4. Denoise the image by Morph Open and Close. */
 	cvtColor(BirdsEyeView,processedIPM, COLOR_BGR2GRAY);
 	// create mask for capturing white
 	// Parameter to tune - THreshold VALUES
@@ -147,11 +153,50 @@ void LaneDetector::Detect(Mat &frame){
   morphologyEx(processedIPM, processedIPM, MORPH_CLOSE, MorphologyKernel);
 	// convert to binary
 	threshold(processedIPM, processedIPM, 150, 255, THRESH_BINARY);
+	
+}
 
-	// now comes the sliding window search for left
+void LaneDetector::Detect(Mat &frame){
+	/* This function is the Final Detection function.
+		It will perform Lane detection on a given Frame. 
+
+		Input - Frame (CV::MAT)
+		Output - LanePointsLeftFrame and LanePointsRightFrame
+
+	*/
+	originalFrame = frame;
+	GenerateWarpedImage();
+	
+	ProcessImage();
+
+	DetectLeftandRight();
+}
+
+// Function to only detect left and right points 
+// and append to the vector of Left and Right points 
+// in the vehicle frame.
+void LaneDetector::DetectLeftandRight(){
+	// Do the sliding window search for left
 	vector<Point2f> LanePointsleft = slidingWindow(processedIPM,
 		Rect(20, 440, 60, 40));
-	//  RIght
+	//  Sliding Window Search for the right frame
+	vector<Point2f> LanePointsright = slidingWindow(processedIPM,
+		Rect(540, 440, 60, 40));
+	// Now append to the left and Right vectors in vehicle frame
+	cv::perspectiveTransform(LanePointsleft,LanePointsLeftFrame,
+		InversePerspectiveMatrix);
+	cv::perspectiveTransform(LanePointsright,LanePointsRightFrame,
+		InversePerspectiveMatrix);
+	
+}
+
+// Function to find the appended vector of lanes in the vehicle 
+// coordinate system.
+void LaneDetector::DetectOverall(){
+	// Do the sliding window search for left
+	vector<Point2f> LanePointsleft = slidingWindow(processedIPM,
+		Rect(20, 440, 60, 40));
+	//  Do the Sliding Window search for RIght
 	vector<Point2f> LanePointsright = slidingWindow(processedIPM,
 		Rect(540, 440, 60, 40));
 
@@ -161,8 +206,4 @@ void LaneDetector::Detect(Mat &frame){
 						, LanePointsright.end());
 	cv::perspectiveTransform(LanePoints,LanePointsFrame,
 		InversePerspectiveMatrix);
-
-
-
-
 }

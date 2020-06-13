@@ -56,20 +56,45 @@ void Client::extractIntrinsics(depth_frame& frame){
 
 // Function to update Lane Points in coordinates (z,x) form
 void Client::updateLane(){
-  depth_frame depth = frames.get_depth_frame();
+  
   detector.Detect(this->ColorFrame);
-  Lanes.clear();
+  updateLaneLeft();
+  updateLaneRight();
+}
+
+void Client::updateLaneLeft(){
+  // Function to get spatial coordinates of Left lane pts
+  depth_frame depth = frames.get_depth_frame();
+  LanesLeft.clear();
   float pixel[2];
   pair<float,float> coordinate;
   float zcood;
-  for(auto point:detector.LanePointsFrame){
+  for(auto point:detector.LanePointsLeftFrame){
     pixel[0] = point.x;
     pixel[1] = point.y;
     zcood = depth.get_distance(pixel[0],pixel[1]);
     if (zcood>= 0.48 && zcood<=3){
         get3DCoordinates(coordinate,pixel,zcood);
         // get the x coordinate and add to vector of obstacles.
-        Lanes.push_back(coordinate);
+        LanesLeft.push_back(coordinate);
+    }
+  }
+}
+
+void Client::updateLaneRight(){
+  depth_frame depth = frames.get_depth_frame();
+  LanesRight.clear();
+  float pixel[2];
+  pair<float,float> coordinate;
+  float zcood;
+  for(auto point:detector.LanePointsRightFrame){
+    pixel[0] = point.x;
+    pixel[1] = point.y;
+    zcood = depth.get_distance(pixel[0],pixel[1]);
+    if (zcood>= 0.48 && zcood<=3){
+        get3DCoordinates(coordinate,pixel,zcood);
+        // get the x coordinate and add to vector of obstacles.
+        LanesRight.push_back(coordinate);
     }
   }
 }
