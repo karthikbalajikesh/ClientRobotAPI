@@ -17,19 +17,18 @@
 
 class TCP{
 private:
+  
+public:
   // variables
-
-  //boost::asio::ip::tcp::socket sock;
   std::shared_ptr<IOCONTEXT> IO;
   std::shared_ptr<IPADDRESS> IP;
   std::shared_ptr<ENDPOINT> EP;
   std::shared_ptr<SOCKET> SOCK;
 
 
-
-public:
   TCP();   // Default constructor
   TCP(std::string& IP_ADDRESS, unsigned short port_number);
+
 
 
 

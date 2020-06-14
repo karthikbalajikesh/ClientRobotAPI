@@ -9,6 +9,9 @@
 #include<algorithm>
 #include"depthCamera.h"
 #include"LaneDetector.h"
+#include"message.hpp"
+#include"tcp.h"
+#include"path.hpp"
 
 
 
@@ -16,7 +19,7 @@ using std::vector;
 using std::pair;
 
 
-class Client: public DepthCamera {
+class Client: public DepthCamera , public TCP{
 public:
   // This will contain one instance of Lane LaneDetector
   LaneDetector detector;
@@ -26,6 +29,8 @@ public:
   vector<pair<float,float>> LanesLeft;
   vector<pair<float,float>> LanesRight;
   vector<float> depths;
+  message Data;
+  Path Trajectory;
 
   Client();
 
@@ -39,4 +44,8 @@ public:
   void Detect();
   void DetectnoThread();
   void get3DCoordinates(pair<float,float>& cood,float pixel[2],float zcood);
+  void Update();
+  void sendToServer();
+  void receiveFromServer();
+
 };

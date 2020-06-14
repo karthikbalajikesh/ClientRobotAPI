@@ -29,7 +29,7 @@ TCP::TCP(){
     // Define Socket
     SOCK = std::make_shared<SOCKET>(*IO,EP->protocol());
     
-
+    SOCK->connect(*EP);
 
 
     } catch(boost::system::system_error &e){

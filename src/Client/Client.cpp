@@ -2,10 +2,9 @@
 
 // Client Constructor
 
-Client::Client():DepthCamera(){
+Client::Client():DepthCamera(),TCP(){
     detector = LaneDetector(this->ColorFrame);
-
-
+    Data = message();
 
 }
 
@@ -26,6 +25,7 @@ void Client::Detect(){
   // Join the threads
   th1.join();
   th2.join();
+  Data.setParams(Obstacles,LanesLeft,LanesRight);
 }
 
 
@@ -40,7 +40,7 @@ void Client::DetectnoThread(){
   updateLane();
   // Get Obstacle Points
   updateObstacles();
-
+  Data.setParams(Obstacles,LanesLeft,LanesRight);
 }
 
 
@@ -135,3 +135,44 @@ void Client::get3DCoordinates(pair<float,float>& cood,
     cood  = make_pair(zcood,x);
 
   }
+// Function to send request message, Message object to Server
+void Client::sendToServer(){
+  boost::asio::streambuf buf;
+  std::ostream OutputStream(&buf);
+  boost::archive::text_oarchive OutputArchive(OutputStream);
+
+  // Perform Serialization
+  OutputArchive & Data;
+
+  // Scatter Send
+  const size_t header = buf.size();
+  vector<boost::asio::const_buffer> buffers;
+  buffers.push_back(boost::asio::const_buffer(&header, sizeof(header)));
+        buffers.push_back(buf.data());
+  boost::asio::write(*SOCK,buffers);
+}
+
+void Client::receiveFromServer(){
+  size_t header;
+  boost::asio::read(*SOCK,
+      boost::asio::buffer( &header, sizeof(header)));
+  
+  // Read the Body
+  boost::asio::streambuf buf;
+  boost::asio::read(*SOCK,buf.prepare(header));
+  buf.commit(header);
+  // Deserialization
+  std::istream InputStream(&buf);
+  boost::archive::text_iarchive InputArchive(InputStream);
+  InputArchive & Trajectory;
+
+}
+// This function will run on a loop. 
+void Client::Update(){
+  Detect();
+  sendToServer();
+  receiveFromServer();
+  /* After this we will send to another program 
+  which will communicate this to a server that 
+  communicates with Arduino using serial communication.*/
+}

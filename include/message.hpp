@@ -1,3 +1,5 @@
+#pragma once
+
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -15,24 +17,44 @@ using std::pair;
 using std::endl;
 #define mp std::make_pair
 
+typedef std::pair<float,float> floatpair;
+
 class message{
 private:
   friend class boost::serialization::access;
   template<class Archive>
   void serialize(Archive &A, const unsigned int version){
-      A & Coordinates;
+      A & Obstacles;
+      A & LaneLeft;
+      A & LaneRight;
       A & stop_sign;
   }
 public:
-  vector<pair<float,float>> Coordinates;
+  vector<pair<float,float>> Obstacles;
+  vector<pair<float,float>> LaneLeft;
+  vector<pair<float,float>> LaneRight;
   int stop_sign;  // if 0, no stop sign.
   message(){}
-  message(vector<pair<float,float>> &cood):Coordinates(cood),stop_sign(0){}
+
+  message(vector<floatpair> &Obs, vector<floatpair> &laneleft,
+       vector<floatpair> &laneright):Obstacles(Obs),LaneLeft(laneleft)
+       , LaneRight(laneright),stop_sign(0){}
 
   void printVector(){
-      for(auto x:Coordinates){
+      for(auto x:Obstacles){
           cout<<"\n"<<x.first<<"\t"<<x.second;
       }
       cout<<std::endl;
   }
+
+  // Non Constructor function to create the message.
+  void setParams(vector<floatpair> &Obs, vector<floatpair> &laneleft,
+       vector<floatpair> &laneright){
+         Obstacles = Obs;
+         LaneLeft = laneleft;
+         LaneRight = laneright;
+
+       }
 };
+
+  

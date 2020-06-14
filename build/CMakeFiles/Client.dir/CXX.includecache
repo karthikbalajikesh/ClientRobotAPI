@@ -21,6 +21,12 @@ depthCamera.h
 ../include/depthCamera.h
 LaneDetector.h
 ../include/LaneDetector.h
+message.hpp
+../include/message.hpp
+tcp.h
+../include/tcp.h
+path.hpp
+../include/path.hpp
 
 ../include/LaneDetector.h
 iostream
@@ -59,6 +65,28 @@ thread
 -
 
 ../include/message.hpp
+iostream
+-
+fstream
+-
+vector
+-
+utility
+-
+boost/archive/text_oarchive.hpp
+-
+boost/archive/text_iarchive.hpp
+-
+boost/serialization/serialization.hpp
+-
+boost/serialization/access.hpp
+-
+boost/serialization/vector.hpp
+-
+boost/serialization/utility.hpp
+-
+
+../include/path.hpp
 iostream
 -
 fstream
