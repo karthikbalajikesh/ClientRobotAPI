@@ -56,7 +56,7 @@ void Client::extractIntrinsics(depth_frame& frame){
 
 // Function to update Lane Points in coordinates (z,x) form
 void Client::updateLane(){
-  
+
   detector.Detect(this->ColorFrame);
   updateLaneLeft();
   updateLaneRight();
@@ -137,6 +137,7 @@ void Client::get3DCoordinates(pair<float,float>& cood,
   }
 // Function to send request message, Message object to Server
 void Client::sendToServer(){
+  
   boost::asio::streambuf buf;
   std::ostream OutputStream(&buf);
   boost::archive::text_oarchive OutputArchive(OutputStream);
@@ -150,13 +151,15 @@ void Client::sendToServer(){
   buffers.push_back(boost::asio::const_buffer(&header, sizeof(header)));
         buffers.push_back(buf.data());
   boost::asio::write(*SOCK,buffers);
+
+  SOCK->shutdown(boost::asio::socket_base::shutdown_send);
 }
 
 void Client::receiveFromServer(){
   size_t header;
   boost::asio::read(*SOCK,
       boost::asio::buffer( &header, sizeof(header)));
-  
+
   // Read the Body
   boost::asio::streambuf buf;
   boost::asio::read(*SOCK,buf.prepare(header));
@@ -167,12 +170,14 @@ void Client::receiveFromServer(){
   InputArchive & Trajectory;
 
 }
-// This function will run on a loop. 
+// This function will run on a loop.
 void Client::Update(){
+  SOCK->connect(*EP);
   Detect();
   sendToServer();
-  receiveFromServer();
-  /* After this we will send to another program 
-  which will communicate this to a server that 
+  SOCK->close();
+  //receiveFromServer();
+  /* After this we will send to another program
+  which will communicate this to a server that
   communicates with Arduino using serial communication.*/
 }
