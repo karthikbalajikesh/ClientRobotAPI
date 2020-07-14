@@ -175,8 +175,9 @@ void Client::Update(){
   SOCK->connect(*EP);
   Detect();
   sendToServer();
+  receiveFromServer();
+  Trajectory.printDetails();
   SOCK->close();
-  //receiveFromServer();
   /* After this we will send to another program
   which will communicate this to a server that
   communicates with Arduino using serial communication.*/

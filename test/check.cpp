@@ -31,24 +31,28 @@ void testThreadPerformance(Client& A){
 
 }
 
-void testSocket(Client &A){
-  
-   
+void testClient(Client &A){
+
     boost::asio::steady_timer t(*A.IO,boost::asio::chrono::milliseconds(100));
 
     while(1){
       A.Update();
       t.wait();
     }
-  
+}
 
+void testServer(Client &A){
+  // Test to check if the server is sending right info
+  while(1){
+    A.Update();
+  }
 }
 
 
 int main(){
 
   Client A;
-  testSocket(A);
+  testServer(A);
   /*
   auto start = high_resolution_clock::now();
   A.DetectnoThread();

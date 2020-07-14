@@ -41,7 +41,20 @@ public:
        , LaneRight(laneright),stop_sign(0){}
 
   void printVector(){
+      std::cout<<"\n OBSTACLES:      "<<std::endl;
       for(auto x:Obstacles){
+          cout<<"\n"<<x.first<<"\t"<<x.second;
+      }
+      cout<<std::endl;
+
+      std::cout<<"\n LEFTLANE:      "<<std::endl;
+      for(auto x:LaneLeft){
+          cout<<"\n"<<x.first<<"\t"<<x.second;
+      }
+      cout<<std::endl;
+
+      std::cout<<"\n LANERIGHT:      "<<std::endl;
+      for(auto x:LaneRight){
           cout<<"\n"<<x.first<<"\t"<<x.second;
       }
       cout<<std::endl;
